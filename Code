@@ -1,0 +1,23 @@
+// Fluid Mechanics Data Class
+case class FluidMechanicsData(velocity: Double, pressure: Double, viscosity: Double)
+
+object FluidMechanicsAnalyzer {
+  // Method to process the data
+  def analyzeData(data: FluidMechanicsData): String = {
+    val flowType = if (data.velocity > 0) "Fluid is in motion." else "Fluid is stagnant."
+    val isTurbulent = if (data.velocity > 10 && data.viscosity < 0.1) "Turbulence detected." else "No turbulence detected."
+    val pressureStatus = if (data.pressure > 0) "Pressure detected." else "No pressure detected."
+
+    s"Flow Velocity: ${data.velocity} m/s, Pressure: ${data.pressure} Pa, Viscosity: ${data.viscosity} Pa.s\n$flowType\n$isTurbulent\n$pressureStatus"
+  }
+
+  def main(args: Array[String]): Unit = {
+    // Fluid mechanics data
+    val fluidData = FluidMechanicsData(15.5, 2000, 0.08)
+
+    // Analyze the data and print the results
+    val analysisResult = analyzeData(fluidData)
+    println("Fluid Mechanics Analysis:")
+    println(analysisResult)
+  }
+}
